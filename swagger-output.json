@@ -1,0 +1,136 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "Description",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/shipping-methods": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "description": "Create a new shipping method",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShippingMethod"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Shipping method created successfully"
+          },
+          "default": {
+            "description": "Unexpected error"
+          }
+        }
+      }
+    },
+    "/shipping-methods/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "Update an existing shipping method",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShippingMethod"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Shipping method updated successfully"
+          },
+          "default": {
+            "description": "Unexpected error"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete an existing shipping method",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ShippingMethod": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the shipping method"
+        },
+        "shipping_provider": {
+          "type": "string",
+          "description": "The shipping provider for this method"
+        },
+        "charges": {
+          "type": "number",
+          "format": "float",
+          "description": "Shipping charges"
+        },
+        "shipping_services": {
+          "type": "string",
+          "description": "Description of the shipping services provided"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Active", "InActive"],
+          "default": "Active",
+          "description": "Status of the shipping method"
+        }
+      },
+      "required": ["name", "shipping_provider", "shipping_services"]
+    }
+  }
+}
