@@ -5,17 +5,16 @@ const ShippingMethodsSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
+      index: true,
     },
     shipping_provider: {
       type: String,
       required: true,
+      index: true,
     },
     charges: {
       type: Number,
-      validate: {
-        validator: (value) => value >= 0,
-        message: "{VALUE} must be greater than or equal to zero",
-      },
+      min: 0,
     },
     shipping_services: {
       type: String,
@@ -25,6 +24,8 @@ const ShippingMethodsSchema = new mongoose.Schema(
       type: String,
       enum: ["Active", "InActive"],
       message: "{VALUE} is not supported",
+      default: "Active",
+      index: true,
     },
   },
   {

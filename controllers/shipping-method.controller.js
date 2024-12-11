@@ -1,17 +1,17 @@
-const CommonDecorators = require("../common/common");
+const shippingMethodService = require("../services/shipping-method.service");
 const {
   ResponseMessage: { ShippingMethods: MESSAGE },
 } = require("../lib/api");
 const { StatusCodes } = require("../lib/constant");
+const responser = require("../common/common");
 
-// const clinicService = require("../services/clinic.service");
-class ShippingMethodController extends CommonDecorators {
+class ShippingMethodController {
   async add(req, res) {
     try {
-      const clinic = await shippingMethodService.add(req);
-      this.sendResponse(res, StatusCodes.OK, MESSAGE.add);
+      await shippingMethodService.addShippingMethod(req.body);
+      responser.sendResponse(res, StatusCodes.CREATED, MESSAGE.add);
     } catch (error) {
-      this.sendResponse(res, StatusCodes.BAD_REQUEST, error);
+      responser.sendResponse(res, StatusCodes.BAD_REQUEST, error);
     }
   }
 }

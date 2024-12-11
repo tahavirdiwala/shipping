@@ -1,7 +1,6 @@
 const { response } = require("express");
-const fs = require("fs");
 
-class CommonDecorators {
+class CommonResponseDecorators {
   /**
    * Sends a JSON response with a status code, message, and optional data.
    * @param {response} response - Express response object.
@@ -16,13 +15,6 @@ class CommonDecorators {
       .status(statusCode)
       .json({ statusCode, message: dispatch, ...(data && { data }) });
   }
-  /**
-   * @param {string} dir - current directory for files.
-   * @returns {string[]} all files inside current directory
-   */
-  getFiles(dir) {
-    return fs.readdirSync(dir);
-  }
 }
 
-module.exports = CommonDecorators;
+module.exports = new CommonResponseDecorators();

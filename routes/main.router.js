@@ -1,4 +1,4 @@
-const { getFiles } = require("../common/common");
+const { getFiles } = require("../utils");
 
 const routerFiles = getFiles(__dirname);
 routerFiles.splice(routerFiles.indexOf("index.js"), 1);

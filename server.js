@@ -1,6 +1,6 @@
 const express = require("express");
 const connectDb = require("./database/connect");
-const routes = require("./routes");
+const routes = require("./routes/index");
 const EnvironmentMapper = require("./lib/env");
 const app = express();
 
